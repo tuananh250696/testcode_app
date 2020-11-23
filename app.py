@@ -88,6 +88,7 @@ class Ui_Dialog(object):
         self.NEXT_3.setText(_translate("Dialog", "IN PHIẾU KHÁM"))
         self.NEXT_7.setText(_translate("Dialog", "Đóng"))
         self.init_camera()
+    @QtCore.pyqtSlot()
 
     def init_camera(self):
         self.logic = 0
@@ -97,13 +98,12 @@ class Ui_Dialog(object):
         self.CAPTURE.clicked.connect(self.CaptureClicked)
 
 
-
     def onClicked(self):
         self.TEXT.setText('Kindly Press "Capture Image " to Capture image')
         cap = cv2.VideoCapture(0)
         while (cap.isOpened()):
             ret, frame = cap.read()
-
+            self.CAPTURE.clicked.connect(self.CaptureClicked)
             if ret == True:
                 print('here')
                 self.displayImage(frame, 1)
@@ -121,6 +121,8 @@ class Ui_Dialog(object):
     def CaptureClicked(self):
         self.logic = 2
 
+
+
     def displayImage(self, img, window=1):
         qformat = QImage.Format_Indexed8
         if len(img.shape) == 3:
@@ -132,6 +134,7 @@ class Ui_Dialog(object):
         img = img.rgbSwapped()
         self.imgLabel.setPixmap(QPixmap.fromImage(img))
         self.imgLabel.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+
 
 if __name__ == "__main__":
     import sys
