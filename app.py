@@ -87,16 +87,13 @@ class Ui_Dialog(object):
         self.CAPTURE_3.setText(_translate("Dialog", "Zoom+"))
         self.NEXT_3.setText(_translate("Dialog", "IN PHIẾU KHÁM"))
         self.NEXT_7.setText(_translate("Dialog", "Đóng"))
-        self.init_camera()
-    @QtCore.pyqtSlot()
 
-    def init_camera(self):
         self.logic = 0
         self.value = 1
         self.SHOW.clicked.connect(self.onClicked)
         self.TEXT.setText("Kindly Press 'Show' to connect with webcam.")
         self.CAPTURE.clicked.connect(self.CaptureClicked)
-
+    @QtCore.pyqtSlot()
 
     def onClicked(self):
         self.TEXT.setText('Kindly Press "Capture Image " to Capture image')
